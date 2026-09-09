@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Jadoo 👽🛸</title>
+  <meta name="description" content="Use this replica computer interface to call Jadoo from Koi Mil Gaya.">
+  <meta name="author" content="Arjun Munji">
+
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/ellipse.css">
+  <link rel="stylesheet" href="css/wave.css">
+  <link rel="icon" type="image/png" href="assets/favicon-32x32.png" sizes="32x32" />
+
+  <style>
+    /* পুরো ডিসপ্লে ও আলো সেটআপ */
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #000;
+    }
+
+    /* ৩ডি গ্রিডের ওপরে ফ্ল্যাশ করা লাল ও নীল আলো */
+    .grid-light-wrapper {
+      position: fixed;
+      top: 14vh;
+      display: flex;
+      gap: 30px;
+      z-index: 100;
+      pointer-events: none;
+    }
+    .lights-left { left: 16vw; }
+    .lights-right { left: 66vw; }
+
+    .glow-light {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.05s ease;
+      filter: blur(8px);
+    }
+    .light-red {
+      background: #ff0033;
+      box-shadow: 0 0 35px #ff0033, 0 0 70px #ff0000;
+    }
+    .light-blue {
+      background: #00e5ff;
+      box-shadow: 0 0 35px #00e5ff, 0 0 70px #0088ff;
+    }
+    .glow-light.on {
+      opacity: 1 !important;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="background-image"></div>
+  <div id="monitor" class="crt content">
+    <img class="background" src="assets/refresh.gif" />
+
+    <div class="enter-text">
+      <h1>press enter to continue</h1>
+    </div>
+
+    <div class="line vline nodisplay"></div>
+    <div class="line hline nodisplay"></div>
+    <div class="line hline1 nodisplay"></div>
+    <div class="line hline2 nodisplay"></div>
+
+    <div class='wrap nodisplay'>
+      <div class='circle'><div class="radar radar1"></div></div>
+      <div class='circle'><div class="radar radar2"></div></div>
+      <div class='circle'><div class="radar radar3"></div></div>
+      <div class='circle'></div>
+    </div>
+
+    <pre class="garbage garbage-left nodisplay">
+    uplink = yes
+     axis. = 40
+      inc. = 48 pos
+       dec = 57 neg
+
+    signal = <span id="sig-val">80 b</span>
+    </pre>
+
+    <pre class="garbage garbage-right nodisplay">
+    B:066
+    C:067
+    D:068
+    E:069
+    F:070
+    </pre>
+
+    <div class="prompt nodisplay">
+      PRESS KEYS <span class="prompt-key"></span>
+    </div>
+
+    <div class="sending nodisplay">SENDING</div>
+    <div class="receiving nodisplay">RECEIVING</div>
+
+    <div class="header nodisplay">
+      JADOO v1 BY <a href="#">Developer Rajat</a>
+    </div>
+
+    <!-- SENDING গ্রিডের উপরের লাল ও নীল আলো -->
+    <div id="lights-send" class="grid-light-wrapper lights-left">
+      <div class="glow-light light-red"></div>
+      <div class="glow-light light-blue"></div>
+    </div>
+
+    <!-- RECEIVING গ্রিডের উপরের লাল ও নীল আলো -->
+    <div id="lights-recv" class="grid-light-wrapper lights-right">
+      <div class="glow-light light-red"></div>
+      <div class="glow-light light-blue"></div>
+    </div>
+
+    <!-- SENDING ৩ডি গ্রিড (ডিফল্টভাবে লুকানো থাকবে, কী চাপলে আসবে) -->
+    <div id="send" class="sea sea-left nodisplay" style="display:none;">
+      <script>
+        for (let i = 0; i < 120; i++) document.write('<div class="wave"></div>');
+      </script>
+    </div>
+
+    <!-- RECEIVING ৩ডি গ্রিড (ডিফল্টভাবে লুকানো থাকবে, উত্তরে আসবে) -->
+    <div id="receive" class="sea sea-right nodisplay" style="display:none;">
+      <script>
+        for (let i = 0; i < 120; i++) document.write('<div class="wave"></div>');
+      </script>
+    </div>
+  </div>
+
+  <!-- অডিও ফাইলস -->
+  <audio data-key="66" src="assets/B.mp3"></audio>
+  <audio data-key="67" src="assets/C.mp3"></audio>
+  <audio data-key="68" src="assets/D.mp3"></audio>
+  <audio data-key="69" src="assets/E.mp3"></audio>
+  <audio data-key="70" src="assets/F.mp3"></audio>
+
+  <script type="text/javascript" src="js/crt.js"></script>
+</body>
+
+</html>
